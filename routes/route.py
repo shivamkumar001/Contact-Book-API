@@ -32,7 +32,7 @@ async def delete_User(id: str):
     return {"message": "User deleted successfully"}
 
 # Basic search based on name 
-@router.get("/{name}")
+@router.get("/search/name/{name}")
 async def search_user_by_name(name: str):
     #name = name.strip().lower()
     users = list_serial(collection_name.find({"name":name}))
@@ -41,9 +41,9 @@ async def search_user_by_name(name: str):
     return users
 
 # Show User on the basis of Group 
-@router.get("/{Relation}")
-async def search_user_by_relationship(Relation: str):
-    users = list_serial(collection_name.find({"Relation":Relation}))
+@router.get("/search/relation/{relation}")
+async def search_user_by_relationship(relation: str):
+    users = list_serial(collection_name.find({"Relation":relation}))
     if not users:
         raise HTTPException(status_code=404, detail="User not found")
     return users

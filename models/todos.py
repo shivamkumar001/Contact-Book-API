@@ -1,5 +1,5 @@
 from pydantic import BaseModel # data validation and manipulation
-from enum import Enum
+# from enum import Enum
 
 # class RelationEnum(Enum):
 #     FRIEND = "FRIEND"
