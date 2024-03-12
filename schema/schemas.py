@@ -9,7 +9,7 @@ def individual_serial(todo) -> dict:
     return {
         "id": str(todo["_id"]),
         "ContactId": todo["ContactId"],
-        "name"  : todo["Name"],
+        "name"  : todo["name"],
         "MOB": todo["MOB"],
         "username": todo["username"],
         "Group": todo["Group"],
