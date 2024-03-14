@@ -82,14 +82,14 @@
             <input type="text" id="ContactId" placeholder="ContactId" required>
             <input type="text" id="MOB" placeholder="MOB" required>
             <input type="text" id="username" placeholder="username" required>
-            <input type="text" id="group" placeholder="group" required>
+            <input type="text" id="Group" placeholder="Group" required>
             <button type="submit">Add Contact</button>
         </form>
         <p id="error-message" class="error-message"></p>
 
         <h2>Search Contacts by Group</h2>
         <form id="search-contact-form">
-            <input type="text" id="group" placeholder="Group" required>
+            <input type="text" id="Group" placeholder="Group" required>
             <button type="submit">Search</button>
         </form>
         <div id="search-results"></div>
@@ -140,7 +140,7 @@
                         throw new Error('Access token not found');
                     }
 
-                    const response = await fetch('http://localhost:8000/find/contacts', {
+                    const response = await fetch('http://127.0.0.1:8000/find/contacts?username=abhi123&password=123456', {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -169,7 +169,7 @@
                         <p>ContactId: ${contact.ContactId}</p>
                         <p>MOB: ${contact.MOB}</p>
                         <p>username: ${contact.username}</p>
-                        <p>group: ${contact.group}</p>
+                        <p>Group: ${contact.Group}</p>
                         <button onclick="deleteContact('${contact._id}')">Delete</button>
                     `;
                     contactList.appendChild(contactElement);
@@ -232,14 +232,14 @@
             const searchContactForm = document.getElementById('search-contact-form');
             searchContactForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
-                const group = document.getElementById('group').value;
+                const Group = document.getElementById('Group').value;
                 try {
                     const token = localStorage.getItem('accessToken');
                     if (!token) {
                         throw new Error('Access token not found');
                     }
 
-                    const response = await fetch(`http://localhost:8000/search/relation/${group}`, {
+                    const response = await fetch(`http://localhost:8000/search/relation/${Group}?username=abhi123&password=123456`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
