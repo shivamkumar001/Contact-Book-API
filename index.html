@@ -170,7 +170,7 @@
                         <p>MOB: ${contact.MOB}</p>
                         <p>username: ${contact.username}</p>
                         <p>Group: ${contact.Group}</p>
-                        <button onclick="deleteContact('${contact._id}')">Delete</button>
+                        <button onclick="deleteContact('${contact.id}')">Delete</button>
                     `;
                     contactList.appendChild(contactElement);
                 });
@@ -211,13 +211,14 @@
             // Function to delete a contact
             window.deleteContact = async function(id) {
                 try {
-                    const response = await fetch(`http://localhost:8000/${id}`, {
+                  
+                    const response = await fetch(`http://localhost:8000/${id}?username=abhi123&password=123456`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                         }
                     });
-
+                 
                     if (!response.ok) {
                         throw new Error('Failed to delete contact');
                     }
@@ -265,6 +266,10 @@
                     contactElement.innerHTML = `
                         <p>Name: ${contact.name}</p>
                         <p>Email: ${contact.email}</p>
+                        <p>ContactId: ${contact.ContactId}</p>
+                        <p>MOB: ${contact.MOB}</p>
+                        <p>username: ${contact.username}</p>
+                        <p>Group: ${contact.Group}</p>
                     `;
                     searchResults.appendChild(contactElement);
                 });

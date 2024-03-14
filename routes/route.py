@@ -15,6 +15,9 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 @router.post("/add/user")
 async def Add_User(usr: User):
     try:
+        existing_user = authentication_DB.find_one({"username": usr.username})
+        if existing_user:
+            raise HTTPException(status_code=401, detail="User already exists")
         hashed_password = pwd_context.hash(usr.password)
         new_user = User(username=usr.username, password=hashed_password)
         authentication_DB.insert_one(dict(new_user))
