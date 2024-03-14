@@ -24,7 +24,7 @@ async def Add_User(usr: User):
 
 
 # Get User request
-@router.get('/')
+@router.get('/find/contacts')
 async def find_all_contact_of_current_user(current_user: User = Depends(authenticate_user)):
     try:
         if not current_user:
@@ -36,7 +36,7 @@ async def find_all_contact_of_current_user(current_user: User = Depends(authenti
 
 
 # post request method for writing contacts of current user in the db.
-@router.post("/")
+@router.post("/create/contacts")
 async def Post_contact_of_current_user(todo: Contact, current_user: User = Depends(authenticate_user)):
     try:
         if not current_user:
